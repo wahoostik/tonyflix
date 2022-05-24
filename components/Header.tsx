@@ -4,11 +4,30 @@ import TLogo from '../public/Tonyflix.png';
 import { BellIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import Account from '../public/account3.png';
+import { useEffect, useState } from 'react';
 
 
 function Header() {
+
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 0) {
+				setIsScrolled(true);
+			} else {
+				setIsScrolled(false);
+			}
+		};
+		// On nettoie la fonction
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
-		<header>
+		<header className={`${isScrolled && 'bg-slate-900'}`}>
 			<div className='flex items-center space-x-2 md:space-x-10'>
 				{/* width={150} height={100} */}
 				<Image src={TLogo}
