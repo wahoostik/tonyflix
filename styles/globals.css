@@ -1,3 +1,4 @@
+/*
 html,
 body {
   padding: 0;
@@ -14,7 +15,22 @@ a {
 * {
   box-sizing: border-box;
 }
-
+*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* html, body */
+@layer base {
+  body {
+    @apply bg-slate-900 text-white
+  }
+}
+
+/* className personnalisées */
+@layer components {
+  .nav-link {
+    /* color: rgb(216,31,38); */
+    @apply cursor-pointer text-sm font-light text-[rgb(255,255,255)] transition duration-[.5s] hover:text-[rgb(219,219,219)]
+  }
+}
