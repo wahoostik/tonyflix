@@ -23,7 +23,11 @@ a {
 /* html, body */
 @layer base {
   body {
-    @apply bg-slate-900 text-white
+    @apply bg-slate-900 text-white;
+  }
+
+  header {
+    @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6;
   }
 }
 
@@ -31,6 +35,6 @@ a {
 @layer components {
   .nav-link {
     /* color: rgb(216,31,38); */
-    @apply cursor-pointer text-sm font-light text-[rgb(255,255,255)] transition duration-[.5s] hover:text-[rgb(219,219,219)]
+    @apply cursor-pointer text-base font-medium text-[rgb(255,255,255)] transition duration-[.5s] hover:text-[rgb(219,219,219)];
   }
 }
