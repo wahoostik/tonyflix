@@ -36,11 +36,11 @@ function Header() {
 					height={50}
 					className='cursor-pointer object-contain'/>
 				<ul className='hidden space-x-4 md:flex'>
-					<li className='nav-link'>Home</li>
-					<li className='nav-link'>TV Shows</li>
-					<li className='nav-link'>Movies</li>
-					<li className='nav-link'>Popular</li>
-					<li className='nav-link'>My List</li>
+					<li className='nav-link'>Accueil</li>
+					<li className='nav-link'>Séries</li>
+					<li className='nav-link'>Films</li>
+					<li className='nav-link'>Les Plus Populaires</li>
+					<li className='nav-link'>Ma Liste</li>
 				</ul>
 			</div>
 			<div className='flex items-center space-x-4 text-base font-medium'>
