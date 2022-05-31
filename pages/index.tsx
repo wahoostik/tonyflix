@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
+import Row from '../components/Row';
 import { Movie } from '../typing';
 import requests from '../utils/requests';
 
@@ -67,7 +68,10 @@ const Home = ({netflixOriginals, trendingNow, topRated, actionMovies, comedyMovi
 			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Banner netflixOriginals={netflixOriginals} />
 				<section>
-					{/* Row */}
+					<Row />
+					<Row />
+					<Row />
+					<Row />
 				</section>
 			</main>
 		</div>
