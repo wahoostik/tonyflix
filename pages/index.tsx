@@ -13,7 +13,13 @@ type Props = {
 	comedyMovies: Movie[],
 	horrorMovies: Movie[],
 	romanceMovies: Movie[],
-	documentaries: Movie[]
+	documentaries: Movie[],
+	thrillerMovies: Movie[],
+	sciFiMovies: Movie[],
+	dramaMovies: Movie[],
+	adventureMovies: Movie[],
+	mysteryMovies: Movie[],
+	fantasticMovies: Movie[],
 };
 
 export const getServerSideProps = async () => {
@@ -27,6 +33,12 @@ export const getServerSideProps = async () => {
 			horrorMovies,
 			romanceMovies,
 			documentaries,
+			thrillerMovies,
+			sciFiMovies,
+			dramaMovies,
+			adventureMovies,
+			mysteryMovies,
+			fantasticMovies
 		] = await Promise.all([
 			fetch(requests.fetchNetflixOriginals).then((results) => results.json()),
 			fetch(requests.fetchTrending).then((results) => results.json()),
@@ -36,6 +48,12 @@ export const getServerSideProps = async () => {
 			fetch(requests.fetchHorrorMovies).then((results) => results.json()),
 			fetch(requests.fetchRomanceMovies).then((results) => results.json()),
 			fetch(requests.fetchDocumentaries).then((results) => results.json()),
+			fetch(requests.fetchThrillerMovies).then((results) => results.json()),
+			fetch(requests.fetchSciFiMovies).then((results) => results.json()),
+			fetch(requests.fetchDramaMovies).then((results) => results.json()),
+			fetch(requests.fetchAdventureMovies).then((results) => results.json()),
+			fetch(requests.fetchMysteryMovies).then((results) => results.json()),
+			fetch(requests.fetchFantasticMovies).then((results) => results.json()),
 		]);
 		return {
 			props: {
@@ -47,6 +65,12 @@ export const getServerSideProps = async () => {
 				horrorMovies: horrorMovies.results,
 				romanceMovies: romanceMovies.results,
 				documentaries: documentaries.results,
+				thrthrillerMovies: thrillerMovies.results,
+				sciFiMovies: sciFiMovies.results,
+				dramaMovies: dramaMovies.results,
+				adventureMovies: adventureMovies.results,
+				mysteryMovies: mysteryMovies.results,
+				fantasticMovies: fantasticMovies.results,
 			},
 		};
 
@@ -55,7 +79,22 @@ export const getServerSideProps = async () => {
 	}
 };
 
-const Home = ({netflixOriginals, trendingNow, topRated, actionMovies, comedyMovies, horrorMovies, romanceMovies, documentaries}: Props) => {
+const Home = ({
+	netflixOriginals,
+	trendingNow,
+	topRated,
+	actionMovies,
+	comedyMovies,
+	horrorMovies,
+	romanceMovies,
+	documentaries,
+	thrillerMovies,
+	sciFiMovies,
+	dramaMovies,
+	adventureMovies,
+	mysteryMovies,
+	fantasticMovies
+}: Props) => {
 	console.log('Résultat de la recherche Netflix : ', netflixOriginals);
 	return (
 		<div className='relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]'>
@@ -68,10 +107,19 @@ const Home = ({netflixOriginals, trendingNow, topRated, actionMovies, comedyMovi
 			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Banner netflixOriginals={netflixOriginals} />
 				<section>
-					<Row />
-					<Row />
-					<Row />
-					<Row />
+					<Row title='Populaire' movies={trendingNow}/>
+					<Row title='Les mieux notés' movies={topRated}/>
+					<Row title='Action' movies={actionMovies}/>
+					<Row title='Thriller' movies={thrillerMovies}/>
+					<Row title='Science-Fiction' movies={sciFiMovies}/>
+					<Row title='Drame' movies={dramaMovies}/>
+					<Row title='Aventure' movies={adventureMovies}/>
+					<Row title='Fantastique' movies={fantasticMovies}/>
+					<Row title='Comédie' movies={comedyMovies}/>
+					<Row title='Mystère' movies={mysteryMovies}/>
+					<Row title='Horreur' movies={horrorMovies}/>
+					<Row title='Romance' movies={romanceMovies}/>
+					<Row title='Documentaire' movies={documentaries}/>
 				</section>
 			</main>
 		</div>

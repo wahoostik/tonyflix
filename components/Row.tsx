@@ -2,12 +2,14 @@ import { Movie } from '../typing';
 
 type Props = {
     title: string
-    movies: Movie
+    movies: Movie[]
 };
 
 function Row({title, movies}: Props) {
 	return (
-		<div>Row</div>
+		<div>
+			<h2>{title}</h2>
+		</div>
 	);
 }
 
