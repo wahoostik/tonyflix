@@ -27,7 +27,7 @@ function Header() {
 	}, []);
 
 	return (
-		<header className={`${isScrolled && 'bg-slate-900'}`}>
+		<header className={`${isScrolled && 'bg-[#010511]'}`}>
 			<div className='flex items-center space-x-2 md:space-x-10'>
 				{/* width={150} height={100} */}
 				<Image src={TLogo}
