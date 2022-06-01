@@ -23,7 +23,7 @@ a {
 /* html, body */
 @layer base {
   body {
-    @apply bg-[#010511] text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-red-600; // ! = important, cela priorise le scrollbar
+    @apply bg-[#010511] text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-red-600; /* ! = important, cela priorise le scrollbar */
   }
 
   header {
