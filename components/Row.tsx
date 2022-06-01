@@ -15,7 +15,7 @@ function Row({title, movies}: Props) {
 				<ChevronLeftIcon className='chevron-row'/>
 				<div className='flex items-center space-x-0.5 overflow-x-scroll md:space-x-2.5 md:p-2'>
 					{movies && movies.map((movie) => (
-						<Thumbnail key={movie.id}/>
+						<Thumbnail key={movie.id} movie={movie}/>
 					))}
 				</div>
 				<ChevronRightIcon className='chevron-row'/>

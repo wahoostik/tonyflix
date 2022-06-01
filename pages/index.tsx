@@ -65,7 +65,7 @@ export const getServerSideProps = async () => {
 				horrorMovies: horrorMovies.results,
 				romanceMovies: romanceMovies.results,
 				documentaries: documentaries.results,
-				thrthrillerMovies: thrillerMovies.results,
+				thrillerMovies: thrillerMovies.results,
 				sciFiMovies: sciFiMovies.results,
 				dramaMovies: dramaMovies.results,
 				adventureMovies: adventureMovies.results,
