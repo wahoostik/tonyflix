@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
-import TLogo from '../public/Tonyflix.png';
+import TLogo from '../public/tonyflix.png';
 import { BellIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import Account from '../public/account3.png';
