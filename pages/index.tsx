@@ -8,7 +8,7 @@ import requests from '../utils/requests';
 type Props = {
 	netflixOriginals: Movie[],
 	trendingNow: Movie[],
-	topRated: Movie[],
+	topRatedMovies: Movie[],
 	actionMovies: Movie[],
 	comedyMovies: Movie[],
 	horrorMovies: Movie[],
@@ -27,7 +27,7 @@ export const getServerSideProps = async () => {
 		const [
 			netflixOriginals,
 			trendingNow,
-			topRated,
+			topRatedMovies,
 			actionMovies,
 			comedyMovies,
 			horrorMovies,
@@ -42,7 +42,7 @@ export const getServerSideProps = async () => {
 		] = await Promise.all([
 			fetch(requests.fetchNetflixOriginals).then((results) => results.json()),
 			fetch(requests.fetchTrending).then((results) => results.json()),
-			fetch(requests.fetchTopRated).then((results) => results.json()),
+			fetch(requests.fetchTopRatedMovies).then((results) => results.json()),
 			fetch(requests.fetchActionMovies).then((results) => results.json()),
 			fetch(requests.fetchComedyMovies).then((results) => results.json()),
 			fetch(requests.fetchHorrorMovies).then((results) => results.json()),
@@ -59,7 +59,7 @@ export const getServerSideProps = async () => {
 			props: {
 				netflixOriginals: netflixOriginals.results,
 				trendingNow: trendingNow.results,
-				topRated: topRated.results,
+				topRatedMovies: topRatedMovies.results,
 				actionMovies: actionMovies.results,
 				comedyMovies: comedyMovies.results,
 				horrorMovies: horrorMovies.results,
@@ -82,7 +82,7 @@ export const getServerSideProps = async () => {
 const Home = ({
 	netflixOriginals,
 	trendingNow,
-	topRated,
+	topRatedMovies,
 	actionMovies,
 	comedyMovies,
 	horrorMovies,
@@ -108,7 +108,7 @@ const Home = ({
 				<Banner netflixOriginals={netflixOriginals} />
 				<section className='md:space-y-24'>
 					<Row title='Populaires' movies={trendingNow}/>
-					<Row title='Les mieux notés' movies={topRated}/>
+					<Row title='Les mieux notés' movies={topRatedMovies}/>
 					<Row title='Action' movies={actionMovies}/>
 					<Row title='Thriller' movies={thrillerMovies}/>
 					<Row title='Science-Fiction' movies={sciFiMovies}/>
