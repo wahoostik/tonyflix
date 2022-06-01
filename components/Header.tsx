@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import TLogo from '../public/tonyflix.png';
 import { BellIcon, SearchIcon } from '@heroicons/react/solid';
@@ -29,16 +28,23 @@ function Header() {
 	return (
 		<header className={`${isScrolled && 'bg-[#010511]'}`}>
 			<div className='flex items-center space-x-2 md:space-x-10'>
-				{/* width={150} height={100} */}
-				<Image src={TLogo}
-					alt="Tonyflix Logo"
-					width={150}
-					height={50}
-					className='cursor-pointer object-contain'/>
+				<Link href='/'>
+					<Image src={TLogo}
+						alt="Tonyflix Logo"
+						width={150}
+						height={50}
+						className='cursor-pointer object-contain'/>
+				</Link>
 				<ul className='hidden space-x-4 md:flex'>
-					<li className='nav-link'>Accueil</li>
-					<li className='nav-link'>Séries</li>
-					<li className='nav-link'>Films</li>
+					<Link href='/'>
+						<li className='nav-link'>Accueil</li>
+					</Link>
+					<Link href='/tvshows'>
+						<li className='nav-link'>Séries</li>
+					</Link>
+					<Link href='/movies'>
+						<li className='nav-link'>Films</li>
+					</Link>
 					<li className='nav-link'>Les Plus Populaires</li>
 					<li className='nav-link'>Ma Liste</li>
 				</ul>
