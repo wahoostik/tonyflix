@@ -19,16 +19,17 @@ const requests = {
 	fetchAdventureMovies: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=fr-FR&with_genres=12`,
 	fetchMysteryMovies: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=fr-FR&with_genres=9648`,
 	fetchFantasticMovies: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=fr-FR&with_genres=14`,
-	fetchActionTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=28`,
+	fetchActionAndAdventureTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=10759`,
 	fetchComedyTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=35`,
-	fetchHorrorTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=27`,
+	fetchAnimationTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=16`,
+	fetchDocumentaryTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=99`,
 	fetchRomanceTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=10749`,
-	fetchThrillerTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=53`,
-	fetchSciFTVShowss: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=878`,
+	fetchThrillerTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=80`,
+	fetchSciFiAndFantasticTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=10765`,
 	fetchDramaTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=18`,
-	fetchAdventureTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=12`,
+	fetchKidsTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=10762`,
 	fetchMysteryTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=9648`,
-	fetchFantasticTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=14`,
+	fetchSoapTVShows: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=fr-FR&with_genres=10766`,
 };
 
 export default requests;
