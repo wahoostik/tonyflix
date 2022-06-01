@@ -5,16 +5,16 @@ import  { FaPlay } from 'react-icons/fa';
 import { InformationCircleIcon } from '@heroicons/react/solid';
 
 type Props = {
-	netflixOriginals: Movie[]
+	bannerData: Movie[]
 };
 
-function Banner({netflixOriginals}: Props) {
+function Banner({bannerData}: Props) {
 
 	const [movie, setMovie] = useState<Movie | null>(null);
 
 	useEffect(() => {
-		setMovie(netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]);
-	}, [netflixOriginals]);
+		setMovie(bannerData[Math.floor(Math.random() * bannerData.length)]);
+	}, [bannerData]);
 
 	console.log('Résultat au hasard : ', movie);
 
@@ -34,7 +34,7 @@ function Banner({netflixOriginals}: Props) {
 			<h1 className="text-2xl font-bold md:text-4xl lg:text-6xl w-[95vw]">
 				{movie?.title || movie?.name || movie?.original_name}
 			</h1>
-			<p className='max-w-sm text-sm md:max-w-lg md:text-lg lg:max-w-4xl lg:text-2xl text-shadow-md'>
+			<p className='max-w-sm text-sm md:max-w-lg md:text-lg lg:max-w-4xl lg:text-xl text-shadow-md'>
 				{movie?.overview}
 			</p>
 			<div className='flex space-x-3'>
