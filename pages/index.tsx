@@ -9,17 +9,9 @@ type Props = {
 	netflixOriginals: Movie[],
 	trendingNow: Movie[],
 	topRatedMovies: Movie[],
-	actionMovies: Movie[],
-	comedyMovies: Movie[],
-	horrorMovies: Movie[],
-	romanceMovies: Movie[],
-	documentaries: Movie[],
-	thrillerMovies: Movie[],
-	sciFiMovies: Movie[],
-	dramaMovies: Movie[],
-	adventureMovies: Movie[],
-	mysteryMovies: Movie[],
-	fantasticMovies: Movie[],
+	topRatedTVShows: Movie[],
+	popularMovies: Movie[],
+	popularTVShows: Movie[],
 };
 
 export const getServerSideProps = async () => {
@@ -28,49 +20,25 @@ export const getServerSideProps = async () => {
 			netflixOriginals,
 			trendingNow,
 			topRatedMovies,
-			actionMovies,
-			comedyMovies,
-			horrorMovies,
-			romanceMovies,
-			documentaries,
-			thrillerMovies,
-			sciFiMovies,
-			dramaMovies,
-			adventureMovies,
-			mysteryMovies,
-			fantasticMovies
+			topRatedTVShows,
+			popularMovies,
+			popularTVShows
 		] = await Promise.all([
 			fetch(requests.fetchNetflixOriginals).then((results) => results.json()),
 			fetch(requests.fetchTrending).then((results) => results.json()),
 			fetch(requests.fetchTopRatedMovies).then((results) => results.json()),
-			fetch(requests.fetchActionMovies).then((results) => results.json()),
-			fetch(requests.fetchComedyMovies).then((results) => results.json()),
-			fetch(requests.fetchHorrorMovies).then((results) => results.json()),
-			fetch(requests.fetchRomanceMovies).then((results) => results.json()),
-			fetch(requests.fetchDocumentaries).then((results) => results.json()),
-			fetch(requests.fetchThrillerMovies).then((results) => results.json()),
-			fetch(requests.fetchSciFiMovies).then((results) => results.json()),
-			fetch(requests.fetchDramaMovies).then((results) => results.json()),
-			fetch(requests.fetchAdventureMovies).then((results) => results.json()),
-			fetch(requests.fetchMysteryMovies).then((results) => results.json()),
-			fetch(requests.fetchFantasticMovies).then((results) => results.json()),
+			fetch(requests.fetchTopRatedTVShows).then((results) => results.json()),
+			fetch(requests.fetchPopularMovies).then((results) => results.json()),
+			fetch(requests.fetchPopularTVShows).then((results) => results.json()),
 		]);
 		return {
 			props: {
 				netflixOriginals: netflixOriginals.results,
 				trendingNow: trendingNow.results,
 				topRatedMovies: topRatedMovies.results,
-				actionMovies: actionMovies.results,
-				comedyMovies: comedyMovies.results,
-				horrorMovies: horrorMovies.results,
-				romanceMovies: romanceMovies.results,
-				documentaries: documentaries.results,
-				thrillerMovies: thrillerMovies.results,
-				sciFiMovies: sciFiMovies.results,
-				dramaMovies: dramaMovies.results,
-				adventureMovies: adventureMovies.results,
-				mysteryMovies: mysteryMovies.results,
-				fantasticMovies: fantasticMovies.results,
+				topRatedTVShows: topRatedTVShows.results,
+				popularMovies: popularMovies.results,
+				popularTVShows: popularTVShows.results,
 			},
 		};
 
@@ -83,17 +51,9 @@ const Home = ({
 	netflixOriginals,
 	trendingNow,
 	topRatedMovies,
-	actionMovies,
-	comedyMovies,
-	horrorMovies,
-	romanceMovies,
-	documentaries,
-	thrillerMovies,
-	sciFiMovies,
-	dramaMovies,
-	adventureMovies,
-	mysteryMovies,
-	fantasticMovies
+	topRatedTVShows,
+	popularMovies,
+	popularTVShows
 }: Props) => {
 	console.log('Résultat de la recherche Netflix : ', netflixOriginals);
 	return (
@@ -107,19 +67,11 @@ const Home = ({
 			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Banner bannerData={trendingNow} />
 				<section className='md:space-y-24'>
-					<Row title='Populaires' movies={trendingNow}/>
-					<Row title='Les mieux notés' movies={topRatedMovies}/>
-					<Row title='Action' movies={actionMovies}/>
-					<Row title='Thriller' movies={thrillerMovies}/>
-					<Row title='Science-Fiction' movies={sciFiMovies}/>
-					<Row title='Drame' movies={dramaMovies}/>
-					<Row title='Aventure' movies={adventureMovies}/>
-					<Row title='Fantastique' movies={fantasticMovies}/>
-					<Row title='Comédie' movies={comedyMovies}/>
-					<Row title='Mystère' movies={mysteryMovies}/>
-					<Row title='Horreur' movies={horrorMovies}/>
-					<Row title='Romance' movies={romanceMovies}/>
-					<Row title='Documentaire' movies={documentaries}/>
+					<Row title='Tendances' movies={trendingNow}/>
+					<Row title='Films les mieux notés' movies={topRatedMovies}/>
+					<Row title='Films populaires' movies={popularMovies}/>
+					<Row title='Séries les mieux notés' movies={topRatedTVShows}/>
+					<Row title='Séries populaires' movies={popularTVShows}/>
 				</section>
 			</main>
 		</div>

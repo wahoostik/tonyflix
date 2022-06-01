@@ -35,7 +35,7 @@ function Header() {
 						height={50}
 						className='cursor-pointer object-contain'/>
 				</Link>
-				<ul className='hidden space-x-4 md:flex'>
+				<ul className='hidden space-x-4 md:flex text-shadow-md'>
 					<Link href='/'>
 						<li className='nav-link'>Accueil</li>
 					</Link>
