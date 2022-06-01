@@ -67,7 +67,7 @@ const Home = ({
 			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Banner bannerData={trendingNow} />
 				<section className='md:space-y-24'>
-					<Row title='Tendances' movies={trendingNow}/>
+					<Row title='Tendances actuelles' movies={trendingNow}/>
 					<Row title='Films les mieux notés' movies={topRatedMovies}/>
 					<Row title='Films populaires' movies={popularMovies}/>
 					<Row title='Séries les mieux notés' movies={topRatedTVShows}/>

@@ -45,7 +45,7 @@ function Header() {
 					<Link href='/movies'>
 						<li className='nav-link'>Films</li>
 					</Link>
-					<li className='nav-link'>Les Plus Populaires</li>
+					{/*<li className='nav-link'>Les Plus Populaires</li>*/}
 					<li className='nav-link'>Ma Liste</li>
 				</ul>
 			</div>
