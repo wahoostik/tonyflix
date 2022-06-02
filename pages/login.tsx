@@ -16,7 +16,7 @@ function Login() {
 	const [login, setLogin] = useState(false);
 
 	// React-Hook-Form
-	const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+	const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 	const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
 
 	return (
@@ -53,6 +53,8 @@ function Login() {
 							className='input'
 							{...register('email', { required: true })}
 						/>
+						{/* Erreur lorsque la validation du champ échoue  */}
+						{errors.email && <p className='p-1 text-[13px] font-ligh text-orange-500'>L'e-mail est obligatoire pour pouvoir se connecter.</p>}
 					</label>
 					<label className='inline-block w-full'>
 						<input
@@ -61,6 +63,7 @@ function Login() {
 							className='input'
 							{...register('password', { required: true })}
 						/>
+						{errors.password && <p className='p-1 text-[13px] font-light text-orange-500'>Le mot de passe est obligatoire pour pouvoir se connecter.</p>}
 					</label>
 				</div>
 				<button className='w-full rounded bg-[#e50914] py-3 font-bold'>S'identifier</button>
