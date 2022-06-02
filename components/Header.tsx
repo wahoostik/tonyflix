@@ -29,7 +29,8 @@ function Header() {
 		<header className={`${isScrolled && 'bg-[#010511]'}`}>
 			<div className='flex items-center space-x-2 md:space-x-10'>
 				<Link href='/'>
-					<Image src={TLogo}
+					<Image
+						src={TLogo}
 						alt="Tonyflix Logo"
 						width={150}
 						height={50}
