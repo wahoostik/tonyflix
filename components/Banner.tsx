@@ -22,16 +22,16 @@ function Banner({bannerData}: Props) {
 
 	return (
 		<div className='flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12'>
-			<div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
+			<div className='absolute top-0 left-0 -z-10 h-[95vh] w-screen'>
 				<Image
 					src={`${BASE_URL_IMAGE}${movie?.backdrop_path || movie?.poster_path}`}
 					alt={movie?.title || movie?.name || movie?.original_name}
 					layout='fill'
-					objectFit="cover"
+					objectFit='cover'
 				/>
 			</div>
 
-			<h1 className="text-2xl font-bold md:text-4xl lg:text-6xl w-[95vw] text-shadow-md pr-20">
+			<h1 className='text-2xl font-bold md:text-4xl lg:text-6xl w-[95vw] text-shadow-md pr-20'>
 				{movie?.title || movie?.name || movie?.original_name}
 			</h1>
 			<p className='max-w-sm text-sm md:max-w-lg md:text-lg lg:max-w-4xl lg:text-xl text-shadow-md'>

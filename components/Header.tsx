@@ -31,7 +31,7 @@ function Header() {
 				<Link href='/'>
 					<Image
 						src={TLogo}
-						alt="Tonyflix Logo"
+						alt='Tonyflix Logo'
 						width={150}
 						height={50}
 						className='cursor-pointer object-contain'/>
@@ -57,7 +57,7 @@ function Header() {
 				<div className='space-x-4'>
 					<Link href='/account'>
 						<Image src={Account}
-							alt="Account Logo"
+							alt='Account Logo'
 							width={50}
 							height={50}
 							className='cursor-pointer rounded'/>
