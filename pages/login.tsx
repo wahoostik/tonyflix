@@ -5,6 +5,7 @@ import { useState } from 'react';
 import BackgroundLogin from '../public/netflix-background.jpg';
 import TLogo from '../public/tonyflix.png';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import useAuth from '../hooks/useAuth';
 
 type Inputs = {
 	email: string,
@@ -17,8 +18,14 @@ function Login() {
 
 	// React-Hook-Form
 	const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-	const onSubmit: SubmitHandler<Inputs> =  async data => {
-		console.log(data);
+	const { signIn, signUp } = useAuth();
+	const onSubmit: SubmitHandler<Inputs> =  async ({email, password}) => {
+		console.log('email: ' + email, 'mot de passe: ' + password);
+		if (login) {
+			await signIn(email, password);
+		} else {
+			await signUp(email, password);
+		}
 	};
 
 	return (

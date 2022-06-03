@@ -4,7 +4,7 @@ import { AuthProvider } from '../hooks/useAuth';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<AuthProvider>
+		<AuthProvider>  {/* Higher Order Component */}
 			<Component {...pageProps} />
 		</AuthProvider>
 	);

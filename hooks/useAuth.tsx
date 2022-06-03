@@ -78,7 +78,7 @@ export const AuthProvider = ({children}: AuthProps) => {
 			router.push('/'); // On envoie l'utilisateur sur la page d'accueil
 		} catch (error) {
 			console.trace(error);
-			alert('Erreur lors de l\'inscription');
+			alert('Erreur lors de la connexion');
 		} finally {
 			setLoading(false);
 		}
