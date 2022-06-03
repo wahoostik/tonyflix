@@ -44,6 +44,19 @@ function useAuthentification() {
 		}
 	};
 
+	const logout = () => {
+		try {
+			setLoading(true);
+			signOut(auth);
+			setUser(null);
+		} catch (error) {
+			console.trace(error);
+			alert('Erreur lors de la déconnexion');
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return (
 		<div>useAuthentification</div>
 	);
