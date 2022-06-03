@@ -3,13 +3,37 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 
 // Routeur Next.js
 import { useRouter } from 'next/router';
+
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { auth } from '../firebase';
 
-function useAuthentification() {
+type AuthProps = {
+    children: React.ReactNode
+};
+
+type TypeAuth = {
+    user: User | null,
+    signUp: (email: string, password: string) => Promise<void>,
+    signIn: (email: string, password: string) => Promise<void>,
+    logout: () => Promise<void>,
+    error: string | null,
+    loading: boolean,
+};
+
+const AuthContext = createContext<TypeAuth>({
+	user: null,
+	signUp: async () => {},
+	signIn: async () => {},
+	logout: async () => {},
+	error: null,
+	loading: false,
+});
+
+export const AuthProvider = ({children}: AuthProps) => {
 
 	const [loading, setLoading] = useState(false);
 	const [user, setUser] = useState<User | null>(null); // User => Utilisateur Firebase
+	const [error, setError] = useState(null);
 	const router = useRouter();
 
 	const signUp = async (email: string, password: string) => {
@@ -44,7 +68,7 @@ function useAuthentification() {
 		}
 	};
 
-	const logout = () => {
+	const logout = async () => {
 		try {
 			setLoading(true);
 			signOut(auth);
@@ -57,9 +81,17 @@ function useAuthentification() {
 		}
 	};
 
-	return (
-		<div>useAuthentification</div>
-	);
-}
+	const memoValue = useMemo(() => ({
+		user, signUp, signIn, loading, error, logout,
+	}), [user, loading]);
 
-export default useAuthentification;
+	return (
+		<AuthContext.Provider value={memoValue}>
+			{children}
+		</AuthContext.Provider>
+	);
+};
+
+export default function useAuth() {
+	return useContext(AuthContext);
+}
