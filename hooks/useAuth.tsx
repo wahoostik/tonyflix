@@ -34,7 +34,23 @@ export const AuthProvider = ({children}: AuthProps) => {
 	const [loading, setLoading] = useState(false);
 	const [user, setUser] = useState<User | null>(null); // User => Utilisateur Firebase
 	const [error, setError] = useState(null);
+	const [initialLoading, setInitialLoading] = useState(true);
 	const router = useRouter();
+
+	useEffect(() =>
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				// Connecté...
+				setUser(user);
+				setLoading(false);
+			} else {
+				// Pas connecté...
+				setUser(null);
+				setLoading(true);
+				router.push('/login');
+			}
+			setInitialLoading(false);
+		}), [auth]);
 
 	const signUp = async (email: string, password: string) => {
 		try {
@@ -87,7 +103,7 @@ export const AuthProvider = ({children}: AuthProps) => {
 
 	return (
 		<AuthContext.Provider value={memoValue}>
-			{children}
+			{!initialLoading && children}
 		</AuthContext.Provider>
 	);
 };
