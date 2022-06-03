@@ -17,7 +17,9 @@ function Login() {
 
 	// React-Hook-Form
 	const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-	const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+	const onSubmit: SubmitHandler<Inputs> =  async data => {
+		console.log(data);
+	};
 
 	return (
 		<div className='relative flex h-screen w-screen flex-col bg-[#010511] md:items-center md:justify-center md:bg-transparent'>
@@ -66,10 +68,21 @@ function Login() {
 						{errors.password && <p className='p-1 text-[13px] font-light text-orange-500'>Le mot de passe est obligatoire pour pouvoir se connecter.</p>}
 					</label>
 				</div>
-				<button className='w-full rounded bg-[#e50914] py-3 font-bold'>S'identifier</button>
+				<button
+					className='w-full rounded bg-[#e50914] py-3 font-bold'
+					onClick={() => setLogin(true)}
+				>
+					S'identifier
+				</button>
 				<div className='text-[#9e9e9e] flex'>
 					<h2>Première visite sur Tonyflix ?&ensp;</h2>
-					<button type='submit' className='text-white hover:underline'>Inscrivez-vous.</button>
+					<button
+						type='submit'
+						className='text-white hover:underline'
+						onClick={() => setLogin(false)}
+					>
+						Inscrivez-vous.
+					</button>
 				</div>
 			</form>
 		</div>
