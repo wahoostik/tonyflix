@@ -1,14 +1,17 @@
 import Image from 'next/image';
 import TLogo from '../public/tonyflix.png';
 import { BellIcon, SearchIcon } from '@heroicons/react/solid';
+import { XCircleIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import Account from '../public/account3.png';
 import { useEffect, useState } from 'react';
+import useAuth from '../hooks/useAuth';
 
 
 function Header() {
 
 	const [isScrolled, setIsScrolled] = useState(false);
+	const { logout } = useAuth();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -63,6 +66,9 @@ function Header() {
 							className='cursor-pointer rounded'/>
 					</Link>
 				</div>
+				<Link href='/login'>
+					<XCircleIcon className='h-8 w-8' onClick={logout}/>
+				</Link>
 			</div>
 		</header>
 	);

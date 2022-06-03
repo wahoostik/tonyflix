@@ -34,7 +34,7 @@ function Banner({bannerData}: Props) {
 			<h1 className='text-2xl font-bold md:text-4xl lg:text-6xl w-[95vw] text-shadow-md pr-20'>
 				{movie?.title || movie?.name || movie?.original_name}
 			</h1>
-			<p className='max-w-sm text-sm md:max-w-lg md:text-lg lg:max-w-4xl lg:text-xl text-shadow-md'>
+			<p className='max-w-sm text-sm md:max-w-lg md:text-lg lg:max-w-4xl lg:text-xl text-shadow-md pr-5'>
 				{movie?.overview}
 			</p>
 			<div className='flex space-x-3'>
