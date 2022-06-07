@@ -1,6 +1,9 @@
 import Head from 'next/head';
+import { useRecoilValue } from 'recoil';
+import { modalState } from '../atoms/modalAtom';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
+import Modal from '../components/Modal';
 import Row from '../components/Row';
 import useAuth from '../hooks/useAuth';
 import { Movie } from '../typing';
@@ -8,6 +11,7 @@ import requests from '../utils/requests';
 
 type Props = {
 	netflixOriginals: Movie[],
+	amazonPrimeSeries: Movie[],
 	trendingNow: Movie[],
 	topRatedMovies: Movie[],
 	topRatedTVShows: Movie[],
@@ -19,6 +23,7 @@ export const getServerSideProps = async () => {
 	try {
 		const [
 			netflixOriginals,
+			amazonPrimeSeries,
 			trendingNow,
 			topRatedMovies,
 			topRatedTVShows,
@@ -26,6 +31,7 @@ export const getServerSideProps = async () => {
 			popularTVShows
 		] = await Promise.all([
 			fetch(requests.fetchNetflixOriginals).then((results) => results.json()),
+			fetch(requests.fetchAmazonPrimeSeries).then((results) => results.json()),
 			fetch(requests.fetchTrending).then((results) => results.json()),
 			fetch(requests.fetchTopRatedMovies).then((results) => results.json()),
 			fetch(requests.fetchTopRatedTVShows).then((results) => results.json()),
@@ -35,6 +41,7 @@ export const getServerSideProps = async () => {
 		return {
 			props: {
 				netflixOriginals: netflixOriginals.results,
+				amazonPrimeSeries: amazonPrimeSeries.results,
 				trendingNow: trendingNow.results,
 				topRatedMovies: topRatedMovies.results,
 				topRatedTVShows: topRatedTVShows.results,
@@ -50,6 +57,7 @@ export const getServerSideProps = async () => {
 
 const Home = ({
 	netflixOriginals,
+	amazonPrimeSeries,
 	trendingNow,
 	topRatedMovies,
 	topRatedTVShows,
@@ -58,7 +66,9 @@ const Home = ({
 }: Props) => {
 	
 	const { loading } = useAuth();
+	const showModal = useRecoilValue(modalState);
 	if (loading) return null;
+	
 	
 
 	return (
@@ -72,6 +82,8 @@ const Home = ({
 			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Banner bannerData={trendingNow} />
 				<section className='md:space-y-24'>
+					<Row title='Netflix Originals Séries' movies={netflixOriginals}/>
+					<Row title='Amazon Prime Séries' movies={amazonPrimeSeries}/>
 					<Row title='Tendances actuelles' movies={trendingNow}/>
 					<Row title='Films les mieux notés' movies={topRatedMovies}/>
 					<Row title='Films populaires' movies={popularMovies}/>
@@ -79,6 +91,7 @@ const Home = ({
 					<Row title='Séries populaires' movies={popularTVShows}/>
 				</section>
 			</main>
+			{showModal && <Modal />}
 		</div>
 	);
 };
