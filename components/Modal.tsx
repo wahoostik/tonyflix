@@ -78,9 +78,18 @@ function Modal() {
 							<button className='modalButton'>
 								<ThumbUpIcon className='h-7 w-7' />
 							</button>
-							<button onClick={() => setMuted(!muted)}>
+							<button className='modalButton' onClick={() => setMuted(!muted)}>
 								{muted ? ( <VolumeOffIcon className='h-6 w-6' /> ) : ( <VolumeUpIcon className='h-6 w-6' /> )}
 							</button>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div>
+						<div className='flex items-center space-x-2 text-sm'>
+							<p className='font-semibold text-green-400'>Recommandé à {movie!.vote_average * 10} % </p>
+							<p className='font-light'>{movie?.release_date || movie?.first_air_date}</p>
+							<div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">HD</div>
 						</div>
 					</div>
 				</div>
