@@ -75,7 +75,7 @@ export const getServerSideProps = async () => {
 	}
 };
 
-function tvshows({
+function TVShows({
 	popularTVShows,
 	topRatedTVShows,
 	actionAndAdventureTVShows,
@@ -120,4 +120,4 @@ function tvshows({
 	);
 }
 
-export default tvshows;
+export default TVShows;

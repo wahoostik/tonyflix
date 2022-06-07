@@ -75,7 +75,7 @@ export const getServerSideProps = async () => {
 	}
 };
 
-function movies({
+function Movies({
 	popularMovies,
 	topRatedMovies,
 	actionMovies,
@@ -120,4 +120,4 @@ function movies({
 	);
 }
 
-export default movies;
+export default Movies;

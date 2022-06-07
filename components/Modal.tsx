@@ -91,6 +91,9 @@ function Modal() {
 							<p className='font-light'>{movie?.release_date || movie?.first_air_date}</p>
 							<div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">HD</div>
 						</div>
+						<div>
+							<p className="w-5/6">{movie?.overview}</p>
+						</div>
 					</div>
 				</div>
 			</div>
