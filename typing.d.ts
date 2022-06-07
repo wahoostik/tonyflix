@@ -16,3 +16,13 @@ export type Movie = {
     vote_average: number
     vote_count: number
 }
+
+export type Element = {
+    type:
+    | 'Bloopers'
+    | 'Featurette'
+    | 'Behind the Scenes'
+    | 'Clip'
+    | 'Trailer'
+    | 'Teaser'
+}
