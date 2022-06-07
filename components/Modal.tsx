@@ -3,13 +3,14 @@ import MuiModal from '@mui/material/Modal';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modalState, movieState } from '../atoms/modalAtom';
-import { Element } from '../typing';
+import { Element, Genre } from '../typing';
 
 function Modal() {
 	
 	const [showModal, setShowModal] = useRecoilState(modalState);
 	const [movie, setMovie] = useRecoilState(movieState);
 	const [trailer, setTrailer] = useState('');
+	const [genre, setGenre] = useState<Genre[]>([]);
 	
 	useEffect(() => {
 		if(!movie) return;
@@ -20,19 +21,23 @@ function Modal() {
 				const data = await fetch(`https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}?api_key=${API_KEY}
 				&language=fr-FR&append_to_response=videos`);
 				const response = await data.json();
-				//setTrailer(response);
 				console.log('VideoFetch : ' , response);
 
 				if (response?.videos) {
 					const index = response.videos.results.findIndex((element: Element) => element.type === 'Trailer');
 					setTrailer(response.videos?.results[index]?.key);
 				}
+
+				if (response?.genre) {
+					setGenre(response.genre);
+				}
+
 			} catch (error) {
 				console.trace(error);
 			}
 		};
 		fetchVideo();
-	}, [movie]);
+	}, [movie]);	
 	
 	const handleClose = () => {
 		setShowModal(false);
