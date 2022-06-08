@@ -4,6 +4,9 @@ import Header from '../components/Header';
 import Row from '../components/Row';
 import { Movie } from '../typing';
 import requests from '../utils/requests';
+import { useRecoilValue } from 'recoil';
+import { modalState } from '../atoms/modalAtom';
+import Modal from '../components/Modal';
 
 type Props = {
 	popularMovies: Movie[],
@@ -90,6 +93,9 @@ function Movies({
 	mysteryMovies,
 	fantasticMovies
 }: Props) {
+
+	const showModal = useRecoilValue(modalState);
+
 	return (
 		<div className='relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]'>
 			<Head>
@@ -116,6 +122,7 @@ function Movies({
 					<Row title='Documentaire' movies={documentaries}/>
 				</section>
 			</main>
+			{showModal && <Modal />}
 		</div>
 	);
 }
