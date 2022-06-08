@@ -7,7 +7,7 @@ import { Element, Genre } from '../typing';
 import ReactPlayer from 'react-player';
 import { FaPlay } from 'react-icons/fa';
 
-function Modal() {
+function ModalForTVShows() {
 	
 	const [showModal, setShowModal] = useRecoilState(modalState);
 	const [movie, setMovie] = useRecoilState(movieState);
@@ -18,14 +18,14 @@ function Modal() {
 	
 	useEffect(() => {
 		if(!movie) return;
-		
-		const fetchVideo = async () => {
+
+		const fetchTV = async () => {
 			try {
 				const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-				const data = await fetch(`https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}?api_key=${API_KEY}
+				const data = await fetch(`https://api.themoviedb.org/3/tv/${movie?.id}?api_key=${API_KEY}
 				&language=fr-FR&append_to_response=videos`);
 				const response = await data.json();
-				console.log('VideoFetch : ', response);
+				console.log('Video Fetch TVShow : ', response);
 
 				if (response?.videos) {
 					const index = response.videos.results.findIndex((element: Element) => element.type === 'Trailer');
@@ -40,7 +40,7 @@ function Modal() {
 				console.trace(error);
 			}
 		};
-		fetchVideo();
+		fetchTV();
 	}, [movie]);	
 	
 	const handleClose = () => {
@@ -101,4 +101,4 @@ function Modal() {
 	);
 }
 
-export default Modal;
+export default ModalForTVShows;
