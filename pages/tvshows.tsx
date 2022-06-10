@@ -6,9 +6,11 @@ import { Movie } from '../typing';
 import requests from '../utils/requests';
 import { useRecoilValue } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
-import Modal from '../components/Modal';
+import ModalTVShows from '../components/ModalTVShows';
 
 type Props = {
+	netflixOriginals: Movie[],
+	amazonPrimeSeries: Movie[],
 	popularTVShows: Movie[],
 	topRatedTVShows: Movie[],
 	actionAndAdventureTVShows: Movie[],
@@ -27,6 +29,8 @@ type Props = {
 export const getServerSideProps = async () => {
 	try {
 		const [
+			netflixOriginals,
+			amazonPrimeSeries,
 			popularTVShows,
 			topRatedTVShows,
 			actionAndAdventureTVShows,
@@ -41,6 +45,8 @@ export const getServerSideProps = async () => {
 			mysteryTVShows,
 			soapTVShows,
 		] = await Promise.all([
+			fetch(requests.fetchNetflixOriginals).then((results) => results.json()),
+			fetch(requests.fetchAmazonPrimeSeries).then((results) => results.json()),
 			fetch(requests.fetchPopularTVShows).then((results) => results.json()),
 			fetch(requests.fetchTopRatedTVShows).then((results) => results.json()),
 			fetch(requests.fetchActionAndAdventureTVShows).then((results) => results.json()),
@@ -57,6 +63,8 @@ export const getServerSideProps = async () => {
 		]);
 		return {
 			props: {
+				netflixOriginals: netflixOriginals.results,
+				amazonPrimeSeries: amazonPrimeSeries.results,
 				popularTVShows: popularTVShows.results,
 				topRatedTVShows: topRatedTVShows.results,
 				actionAndAdventureTVShows: actionAndAdventureTVShows.results,
@@ -79,6 +87,8 @@ export const getServerSideProps = async () => {
 };
 
 function TVShows({
+	netflixOriginals,
+	amazonPrimeSeries,
 	popularTVShows,
 	topRatedTVShows,
 	actionAndAdventureTVShows,
@@ -107,6 +117,8 @@ function TVShows({
 			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Banner bannerData={popularTVShows} />
 				<section className='md:space-y-24'>
+					<Row title='Netflix Originals Series' movies={netflixOriginals}/>
+					<Row title='Amazon Prime Series' movies={amazonPrimeSeries}/>
 					<Row title='Populaires' movies={popularTVShows}/>
 					<Row title='Les mieux notés' movies={topRatedTVShows}/>
 					<Row title='Action/Aventure' movies={actionAndAdventureTVShows}/>
@@ -122,7 +134,7 @@ function TVShows({
 					<Row title='Soap' movies={soapTVShows}/>
 				</section>
 			</main>
-			{showModal && <Modal />}
+			{showModal && <ModalTVShows />}
 		</div>
 	);
 }

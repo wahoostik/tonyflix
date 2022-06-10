@@ -8,7 +8,7 @@ import ReactPlayer from 'react-player/lazy';
 import { FaPlay } from 'react-icons/fa';
 import Error from './Error';
 
-function Modal() {
+function ModalMovies() {
 	
 	const [showModal, setShowModal] = useRecoilState(modalState);
 	const [movie, setMovie] = useRecoilState(movieState);
@@ -20,29 +20,29 @@ function Modal() {
 	useEffect(() => {
 		if(!movie) return;
 
-		const fetchVideo = async () => {
+		const fetchVideoMovie = async () => {
 			try {
 				const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-				const data = await fetch(`https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}?api_key=${API_KEY}
+				const data = await fetch(`https://api.themoviedb.org/3/movie/${movie?.id}?api_key=${API_KEY}
 				&language=fr-FR&append_to_response=videos`);
 				const response = await data.json();
-				console.log('Video Fetch : ', response);
-	
+				console.log('Video Fetch Movies : ', response);
+
 				if (response?.videos) {
 					const index = response.videos.results.findIndex((element: Element) => element.type === 'Trailer');
 					setTrailer(response.videos?.results[index]?.key);
 				}
-	
+
 				if (response?.genres) {
 					setGenres(response.genres);
 				}
-	
+
 			} catch (error) {
 				console.trace(error);
 			}
 		};
-		
-		fetchVideo();
+
+		fetchVideoMovie();
 	}, [movie]);
 	
 	const handleClose = () => {
@@ -126,4 +126,4 @@ function Modal() {
 	);
 }
 
-export default Modal;
+export default ModalMovies;

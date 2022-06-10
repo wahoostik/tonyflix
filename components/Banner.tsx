@@ -20,8 +20,6 @@ function Banner({bannerData}: Props) {
 		setMovie(bannerData[Math.floor(Math.random() * bannerData.length)]);
 	}, [bannerData]);
 
-	console.log('Résultat au hasard : ', movie);
-
 	const BASE_URL_IMAGE = process.env.NEXT_PUBLIC_API_IMAGE;
 
 	return (
@@ -42,7 +40,12 @@ function Banner({bannerData}: Props) {
 				{movie?.overview}
 			</p>
 			<div className='flex space-x-3'>
-				<button className='banner-button bg-white text-black'><FaPlay className='h-4 w-4 text-black md:h-7 md:w-7'/>Lecture</button>
+				<button
+					className='banner-button bg-white text-black'
+					onClick={() => {
+						setCurrentMovie(movie);
+						setShowModal(true);}}>
+					<FaPlay className='h-4 w-4 text-black md:h-7 md:w-7'/>Lecture</button>
 				<button
 					className='banner-button bg-[gray]/70'
 					onClick={() => {
