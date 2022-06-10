@@ -4,25 +4,26 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modalState, movieState } from '../atoms/modalAtom';
 import { Element, Genre } from '../typing';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 import { FaPlay } from 'react-icons/fa';
+import Error from './Error';
 
 function Modal() {
 	
 	const [showModal, setShowModal] = useRecoilState(modalState);
 	const [movie, setMovie] = useRecoilState(movieState);
 	const [trailer, setTrailer] = useState('');
-	const [genre, setGenre] = useState<Genre[]>([]);
+	const [genres, setGenres] = useState<Genre[]>([]);
 	const [muted, setMuted] = useState(false);
 	const [playing, setPlaying] = useState(false);
 	
 	useEffect(() => {
 		if(!movie) return;
 		
-		const fetchVideo = async () => {
+		const fetchVideoMovie = async () => {
 			try {
 				const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-				const data = await fetch(`https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}?api_key=${API_KEY}
+				const data = await fetch(`https://api.themoviedb.org/3/movie/${movie?.id}?api_key=${API_KEY}
 				&language=fr-FR&append_to_response=videos`);
 				const response = await data.json();
 				console.log('VideoFetch : ', response);
@@ -32,21 +33,45 @@ function Modal() {
 					setTrailer(response.videos?.results[index]?.key);
 				}
 
-				if (response?.genre) {
-					setGenre(response.genre);
+				if (response?.genres) {
+					setGenres(response.genres);
 				}
 
 			} catch (error) {
 				console.trace(error);
 			}
 		};
-		fetchVideo();
+
+		const fetchVideoTVShow = async () => {
+			try {
+				const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+				const data = await fetch(`https://api.themoviedb.org/3/tv/${movie?.id}?api_key=${API_KEY}
+				&language=fr-FR&append_to_response=videos`);
+				const response = await data.json();
+				console.log('VideoFetch : ', response);
+
+				if (response?.videos) {
+					const index = response.videos.results.findIndex((element: Element) => element.type === 'Trailer');
+					setTrailer(response.videos?.results[index]?.key);
+				}
+
+				if (response?.genres) {
+					setGenres(response.genres);
+				}
+
+			} catch (error) {
+				console.trace(error);
+			}
+		};
+
+		fetchVideoMovie();
+		fetchVideoTVShow();
 	}, [movie]);	
 	
 	const handleClose = () => {
 		setShowModal(false);
 	};
-	
+
 	return (
 		<MuiModal
 			open={showModal}
@@ -58,7 +83,8 @@ function Modal() {
 					className='modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818] hover:bg-[#181818]'>
 					<XIcon className='h-6 w-6"'/>
 				</button>
-				<div className='relative pt-[60%]'>
+				<div className='relative pt-[56.25%]'>
+					{!trailer && <button className='absolute inset-0 sm:text-xl vsm:text-sm'><Error /></button>}
 					<ReactPlayer
 						url={`https://www.youtube.com/watch?v=${trailer}`}
 						width="100%"
@@ -84,15 +110,36 @@ function Modal() {
 						</div>
 					</div>
 				</div>
-				<div>
-					<div>
-						<div className='flex items-center space-x-2 text-sm'>
+
+				<div className='flex space-x-16 rounded-b-md bg-[#181818] px-10 py-5'>
+					<div className='space-y-4 text-lg'>
+						<div className='font-semibold text-xl'>
+							{movie?.name || movie?.title}
+						</div>
+						<div className='flex items-center space-x-2 text-md'>
 							<p className='font-semibold text-green-400'>Recommandé à {movie!.vote_average * 10} % </p>
 							<p className='font-light'>{movie?.release_date || movie?.first_air_date}</p>
 							<div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">HD</div>
 						</div>
-						<div>
+
+						<div className='flex flex-col gap-x-10 gap-y-4 md:flex-row'>
 							<p className="w-5/6">{movie?.overview}</p>
+						</div>
+						<div className='flex flex-col space-y-3 text-md'>
+							<div>
+								<span className='text-gray-400'>Genres : </span>
+								{genres.map((genre) => genre.name).join(', ')}
+							</div>
+
+							<div className='capitalize'>
+								<span className='text-gray-400 normal-case'>Langue originale : </span>
+								{movie?.original_language}
+							</div>
+
+							<div>
+								<span className='text-gray-400'>Total des votes : </span>
+								{movie?.vote_count}
+							</div>
 						</div>
 					</div>
 				</div>

@@ -6,7 +6,7 @@ import { Movie } from '../typing';
 import requests from '../utils/requests';
 import { useRecoilValue } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
-import ModalForTVShows from '../components/ModalForTVShows';
+import Modal from '../components/Modal';
 
 type Props = {
 	popularTVShows: Movie[],
@@ -122,7 +122,7 @@ function TVShows({
 					<Row title='Soap' movies={soapTVShows}/>
 				</section>
 			</main>
-			{showModal && <ModalForTVShows />}
+			{showModal && <Modal />}
 		</div>
 	);
 }
