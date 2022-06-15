@@ -1,11 +1,16 @@
 import { CheckIcon } from '@heroicons/react/outline';
+import {  Product } from '@stripe/firestore-stripe-payments';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import useAuth from '../hooks/useAuth';
 import TLogo from '../public/tonyflix.png';
 
-function Plans() {
+type Props = {
+	products: Product[]
+}
+
+function Plans({ products }: Props) {
 
 	const { logout } = useAuth();
 	return (
@@ -48,9 +53,12 @@ function Plans() {
 
 				<div className='mt-4 flex flex-col space-y-4'>
 					<div className='flex w-full items-center justify-center self-end md:w-3/5'>
-						<div className='planBox'>Essentiel</div>
-						<div className='planBox'>Standard</div>
-						<div className='planBox'>Premium</div>
+						{products.map((product) => (
+							<div
+								key={product.id}
+								className='planBox'>{product.name}
+							</div>
+						))}
 					</div>
 					<button>Inscription</button>
 				</div>
