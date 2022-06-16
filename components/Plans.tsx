@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useAuth from '../hooks/useAuth';
 import TLogo from '../public/tonyflix.png';
+import Table from './Table';
 
 type Props = {
 	products: Product[]
@@ -60,6 +61,7 @@ function Plans({ products }: Props) {
 							</div>
 						))}
 					</div>
+					<Table products={products}/>
 					<button>Inscription</button>
 				</div>
 
