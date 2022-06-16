@@ -3,6 +3,7 @@ import {  Product } from '@stripe/firestore-stripe-payments';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import TLogo from '../public/tonyflix.png';
 import Table from './Table';
@@ -14,6 +15,8 @@ type Props = {
 function Plans({ products }: Props) {
 
 	const { logout } = useAuth();
+	const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2]);
+
 	return (
 		<div>
 			<Head>
@@ -57,11 +60,13 @@ function Plans({ products }: Props) {
 						{products.map((product) => (
 							<div
 								key={product.id}
-								className='planBox'>{product.name}
+								className={`planBox ${selectedPlan?.id === product.id ? 'opacity-100' : 'opacity-60'}`}
+								onClick={() => setSelectedPlan(product)}>
+								{product.name}
 							</div>
 						))}
 					</div>
-					<Table products={products}/>
+					<Table products={products} selectedPlan={selectedPlan}/>
 					<button>Inscription</button>
 				</div>
 
