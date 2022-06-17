@@ -15,7 +15,8 @@ type Props = {
 function Plans({ products }: Props) {
 
 	const { logout } = useAuth();
-	const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2]);
+	const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2]); // Sélection du 3e abonnement par défaut
+	const [isBillingLoading, setBillingLoading] = useState(false); // Chargement de la facturation
 
 	return (
 		<div>
@@ -41,9 +42,9 @@ function Plans({ products }: Props) {
 				</button>
 			</header>
 
-			<main className='max-w-5xl px-5 pt-36 pb-12 transition-all md:px-10'>
-				<h1 className='mb-3 text-3xl font-medium'>Sélectionnez le forfait qui vous convient.</h1>
-				<ul>
+			<main className='mx-auto max-w-5xl px-5 pt-36 pb-12 transition-all md:px-10'>
+				<h1 className='mb-5 text-3xl font-medium'>Sélectionnez le forfait qui vous convient.</h1>
+				<ul className='mb-14'>
 					<li className="flex items-center gap-x-2 text-lg">
 						<CheckIcon className="h-7 w-7 text-[#E50914]" /> Regardez autant que vous voulez. Sans publicité.
 					</li>
@@ -67,7 +68,11 @@ function Plans({ products }: Props) {
 						))}
 					</div>
 					<Table products={products} selectedPlan={selectedPlan}/>
-					<button>Inscription</button>
+					<button
+						className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${isBillingLoading && 'opacity-60'}`}
+						disabled={!selectedPlan || isBillingLoading}>
+						Inscription
+					</button>
 				</div>
 
 			</main>

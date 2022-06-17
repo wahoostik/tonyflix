@@ -43,7 +43,7 @@ function Table({products, selectedPlan}: Props) {
 					))}
 				</tr>
 
-				<tr className='tableRow'>
+				<tr className='tableRow mb-10'>
 					<td className='tableTitle'>Tonyflix sur votre TV, ordinateur, smartphone et tablette</td>
 					{products.map((product) => (
 						<td
