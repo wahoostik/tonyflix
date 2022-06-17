@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
+import { loadCheckout } from '../lib/stripe';
 import TLogo from '../public/tonyflix.png';
 import Loader from './Loader';
 import Table from './Table';
@@ -15,9 +16,16 @@ type Props = {
 
 function Plans({ products }: Props) {
 
-	const { logout } = useAuth();
+	const { logout, user } = useAuth();
 	const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2]); // Sélection du 3e abonnement par défaut
 	const [isBillingLoading, setBillingLoading] = useState(false); // Chargement de la facturation
+
+	const subscribeToPlan = () => {
+		if (!user) return;
+	
+		loadCheckout(selectedPlan?.prices[0].id!);
+		setBillingLoading(true);
+	};
 
 	return (
 		<div>
@@ -73,7 +81,8 @@ function Plans({ products }: Props) {
 
 					<button
 						className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${isBillingLoading && 'opacity-60'}`}
-						disabled={!selectedPlan || isBillingLoading}>
+						disabled={!selectedPlan || isBillingLoading}
+						onClick={subscribeToPlan}>
 						{isBillingLoading ? (<Loader color="[#E50914]" />) : ('Inscription')}
 					</button>
 				</div>
