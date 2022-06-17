@@ -2,8 +2,9 @@ function Loader({ color }: { color: string }) {
 	return (
 		<svg
 			role="status"
-			className={`m-auto h-7 w-7 animate-spin text-gray-200 dark:text-transparent ${color}`}
-			viewBox="0 0 100 101"
+			className={`m-auto h-7 w-7 text-gray-200 animate-spin dark:text-transparent fill-${color}`}
+			// className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+			viewBox="0 0 100 100"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 		>

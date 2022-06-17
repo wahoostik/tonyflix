@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import TLogo from '../public/tonyflix.png';
+import Loader from './Loader';
 import Table from './Table';
 
 type Props = {
@@ -67,11 +68,13 @@ function Plans({ products }: Props) {
 							</div>
 						))}
 					</div>
+
 					<Table products={products} selectedPlan={selectedPlan}/>
+
 					<button
 						className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${isBillingLoading && 'opacity-60'}`}
 						disabled={!selectedPlan || isBillingLoading}>
-						Inscription
+						{isBillingLoading ? (<Loader color="[#E50914]" />) : ('Inscription')}
 					</button>
 				</div>
 
