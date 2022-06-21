@@ -8,6 +8,7 @@ import Modal from '../components/Modal';
 import Plans from '../components/Plans';
 import Row from '../components/Row';
 import useAuth from '../hooks/useAuth';
+import useSubscription from '../hooks/useSubscription';
 import payments from '../lib/stripe';
 import { Movie } from '../typing';
 import requests from '../utils/requests';
@@ -20,10 +21,10 @@ type Props = {
 export const getServerSideProps = async () => {
 
 	try {
-		// const [trendingNow] = await Promise.all([fetch(requests.fetchTrending).then((results) => results.json())]);
+		//const [trendingNow] = await Promise.all([fetch(requests.fetchTrending).then((results) => results.json())]);
 		const trendingNow = await fetch(requests.fetchTrending);
 		const renderTrending = await trendingNow.json();
-
+		
 		const products = await getProducts(payments, {
 			includePrices: true,
 			activeOnly: true,
@@ -31,8 +32,8 @@ export const getServerSideProps = async () => {
 		
 		return {
 			props: {
-				// trendingNow: trendingNow.results,
-				trendingNow: renderTrending,
+				//trendingNow: trendingNow.results,
+				trendingNow: renderTrending.results,
 				products
 			},
 		};
@@ -43,10 +44,10 @@ export const getServerSideProps = async () => {
 };
 
 const Home = ({ trendingNow, products }: Props) => {
-	
-	const { loading } = useAuth();
+
+	const { loading, user } = useAuth();
 	const showModal = useRecoilValue(modalState);
-	const subscription = false;
+	const subscription = useSubscription(user);
 
 	if (loading || subscription === null) {
 		return null;

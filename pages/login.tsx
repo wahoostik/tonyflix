@@ -19,6 +19,7 @@ function Login() {
 	// React-Hook-Form
 	const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 	const { signIn, signUp } = useAuth();
+
 	const onSubmit: SubmitHandler<Inputs> =  async ({email, password}) => {
 		console.log('email: ' + email, 'mot de passe: ' + password);
 		if (login) {

@@ -67,7 +67,7 @@ function Header() {
 					</Link>
 				</div>
 				<Link href='/login'>
-					<XCircleIcon className='h-8 w-8' onClick={logout}/>
+					<XCircleIcon className='h-8 w-8 cursor-pointer' onClick={logout}/>
 				</Link>
 			</div>
 		</header>
