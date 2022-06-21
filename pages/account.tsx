@@ -2,9 +2,18 @@ import Head from 'next/head';
 import Image from 'next/image';
 import TLogo from '../public/tonyflix.png';
 import Link from 'next/link';
-import Account from '../public/account3.png';
+import AccountImage from '../public/account3.png';
+import useAuth from '../hooks/useAuth';
+import useSubscription from '../hooks/useSubscription';
+import Moment from 'moment';
 
-function account() {
+function Account() {
+
+	const { user } = useAuth();
+	const subscription = useSubscription(user);
+
+	const formatDateSubscription = Moment(subscription?.created).format('DD/MM/YYYY');
+
 	return (
 		<div>
 			<Head>
@@ -23,15 +32,24 @@ function account() {
 						className='cursor-pointer object-contain'/>
 				</Link>
 				<Link href='/account'>
-					<Image src={Account}
+					<Image src={AccountImage}
 						alt='Account Logo'
 						width={50}
 						height={50}
 						className='cursor-pointer rounded'/>
 				</Link>
 			</header>
+
+			<main className='pt-24'>
+				<div>
+					<h1 className='text-3xl md:text-4xl'>Votre compte</h1>
+					<div>
+						<p>Membre depuis le {formatDateSubscription}</p>
+					</div>
+				</div>
+			</main>
 		</div>
 	);
 }
 
-export default account;
+export default Account;

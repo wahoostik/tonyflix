@@ -3,7 +3,7 @@ import TLogo from '../public/tonyflix.png';
 import { BellIcon, SearchIcon } from '@heroicons/react/solid';
 import { XCircleIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
-import Account from '../public/account3.png';
+import AccountImage from '../public/account3.png';
 import { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 
@@ -59,7 +59,7 @@ function Header() {
 				<BellIcon className='h-6 w-6' />
 				<div className='space-x-4'>
 					<Link href='/account'>
-						<Image src={Account}
+						<Image src={AccountImage}
 							alt='Account Logo'
 							width={50}
 							height={50}
