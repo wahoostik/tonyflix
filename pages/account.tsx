@@ -34,7 +34,7 @@ export const getStaticProps = async () => {
 function Account({products}: Props) {
 	console.log(products);
 	
-	const { user } = useAuth();
+	const { user, logout } = useAuth();
 	const subscription = useSubscription(user);
 
 	const formatDateSubscription = Moment(subscription?.created).format('DD/MM/YYYY');
@@ -65,22 +65,29 @@ function Account({products}: Props) {
 				</Link>
 			</header>
 
-			<main className='pt-24 mx-auto max-w-6xl'>
-				<div>
+			<main className='pt-24 mx-auto max-w-6xl px-5 pb-12 transition-all md:px-10'>
+				<div className='flex flex-col gap-x-4 md:flex-row md:items-center'>
 					<h1 className='text-3xl md:text-4xl'>Votre compte</h1>
 					<div className='-ml-0.5 flex items-center gap-x-1.5'>
 						<MdSwitchAccount className='h-9 w-9 text-[#E50914]'/>
-						<p className='ml-1 text-md font-semibold text-[#555]'>Membre depuis le {formatDateSubscription}</p>
+						<p className='ml-1 text-md font-semibold text-[#888]'>Membre depuis le {formatDateSubscription}</p>
 					</div>
 				</div>
 
-				<div className='mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0 md:pb-0'>
+				<div className='accountRow'>
 					<h4>Votre forfait</h4>
 					<div className='col-span-2 font-medium'>
 						{/* Pour chaque produit, on vérifie l'id de ce produit avec l'abonnement*/}
 						{products.filter((product) => product.id === subscription?.product)[0]?.name}
 					</div>
-					<p>Changer d&apos;abonnement</p>
+					<p className='cursor-pointer text-blue-500 hover:underline md:text-right'>Changer d&apos;abonnement</p>
+				</div>
+
+				<div className='accountRow'>
+					<h4>Paramètres</h4>
+					<p className='col-span-3 cursor-pointer text-blue-500 hover:underline' onClick={logout}>
+						Se déconnecter de tous les appareils
+					</p>
 				</div>
 			</main>
 		</div>
