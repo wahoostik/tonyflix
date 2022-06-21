@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import Head from 'next/head';
 import Header from '../components/Header';
 
@@ -11,7 +10,7 @@ function Custom404() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Header />
-			<h1 className='text-center w-screen py-36'>Oops, cette page n'existe pas</h1>
+			<h1 className='text-center w-screen py-36'>Oops, cette page n&apos;existe pas</h1>
 		</div>
 	);
 }

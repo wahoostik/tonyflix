@@ -6,9 +6,34 @@ import AccountImage from '../public/account3.png';
 import useAuth from '../hooks/useAuth';
 import useSubscription from '../hooks/useSubscription';
 import Moment from 'moment';
+import { MdSwitchAccount } from 'react-icons/md';
+import { getProducts, Product } from '@stripe/firestore-stripe-payments';
+import payments from '../lib/stripe';
 
-function Account() {
+type Props = {
+	products: Product[]
+}
 
+export const getStaticProps = async () => {
+	try {
+		const products = await getProducts(payments, {
+			includePrices: true,
+			activeOnly: true,
+		});
+
+		return {
+			props: {
+				products,
+			},
+		};
+	} catch (error) {
+		console.trace(error);
+	}
+};
+
+function Account({products}: Props) {
+	console.log(products);
+	
 	const { user } = useAuth();
 	const subscription = useSubscription(user);
 
@@ -40,12 +65,22 @@ function Account() {
 				</Link>
 			</header>
 
-			<main className='pt-24'>
+			<main className='pt-24 mx-auto max-w-6xl'>
 				<div>
 					<h1 className='text-3xl md:text-4xl'>Votre compte</h1>
-					<div>
-						<p>Membre depuis le {formatDateSubscription}</p>
+					<div className='-ml-0.5 flex items-center gap-x-1.5'>
+						<MdSwitchAccount className='h-9 w-9 text-[#E50914]'/>
+						<p className='ml-1 text-md font-semibold text-[#555]'>Membre depuis le {formatDateSubscription}</p>
 					</div>
+				</div>
+
+				<div className='mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0 md:pb-0'>
+					<h4>Votre forfait</h4>
+					<div className='col-span-2 font-medium'>
+						{/* Pour chaque produit, on vérifie l'id de ce produit avec l'abonnement*/}
+						{products.filter((product) => product.id === subscription?.product)[0]?.name}
+					</div>
+					<p>Changer d&apos;abonnement</p>
 				</div>
 			</main>
 		</div>

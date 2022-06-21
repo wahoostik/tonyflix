@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -54,7 +53,7 @@ function Login() {
 			<form
 				onSubmit={handleSubmit(onSubmit)} // 'handleSubmit' validera les entrées avant d'invoquer 'onSubmit'
 				className='relative mt-24 space-y-8 rounded bg-[#010511]/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14'>
-				<h1 className='text-4xl font-bold'>S'identifier</h1>
+				<h1 className='text-4xl font-bold'>S&apos;identifier</h1>
 				<div className='space-y-4'>
 					<label className='inline-block w-full'>
 						<input
@@ -64,7 +63,7 @@ function Login() {
 							{...register('email', { required: true })}
 						/>
 						{/* Erreur lorsque la validation du champ échoue  */}
-						{errors.email && <p className='p-1 text-[13px] font-ligh text-orange-500'>L'e-mail est obligatoire pour pouvoir se connecter.</p>}
+						{errors.email && <p className='p-1 text-[13px] font-ligh text-orange-500'>L&apos;e-mail est obligatoire pour pouvoir se connecter.</p>}
 					</label>
 					<label className='inline-block w-full'>
 						<input
@@ -80,7 +79,7 @@ function Login() {
 					className='w-full rounded bg-[#e50914] py-3 font-bold'
 					onClick={() => setLogin(true)}
 				>
-					S'identifier
+					S&apos;identifier
 				</button>
 				<div className='text-[#9e9e9e] flex'>
 					<h2>Première visite sur Tonyflix ?&ensp;</h2>
