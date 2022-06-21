@@ -9,6 +9,7 @@ import Moment from 'moment';
 import { MdSwitchAccount } from 'react-icons/md';
 import { getProducts, Product } from '@stripe/firestore-stripe-payments';
 import payments from '../lib/stripe';
+import Plans from '../components/Plans';
 
 type Props = {
 	products: Product[]
