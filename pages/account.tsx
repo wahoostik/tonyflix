@@ -10,6 +10,7 @@ import { MdSwitchAccount } from 'react-icons/md';
 import { getProducts, Product } from '@stripe/firestore-stripe-payments';
 import payments from '../lib/stripe';
 import Plans from '../components/Plans';
+import Membership from '../components/Membership';
 
 type Props = {
 	products: Product[]
@@ -74,6 +75,8 @@ function Account({products}: Props) {
 						<p className='ml-1 text-md font-semibold text-[#888]'>Membre depuis le {formatDateSubscription}</p>
 					</div>
 				</div>
+
+				<Membership />
 
 				<div className='accountRow'>
 					<h4>Votre forfait</h4>
