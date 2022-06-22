@@ -6,6 +6,7 @@ import Link from 'next/link';
 import AccountImage from '../public/account3.png';
 import { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
+import Menu from './Menu';
 
 
 function Header() {
@@ -39,6 +40,9 @@ function Header() {
 						height={50}
 						className='cursor-pointer object-contain'/>
 				</Link>
+
+				<Menu />
+				
 				<ul className='hidden space-x-4 md:flex text-shadow-md'>
 					<Link href='/'>
 						<li className='nav-link'>Accueil</li>
