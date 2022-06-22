@@ -95,13 +95,15 @@ function Account({products}: Props) {
 						{products.filter((product) => product.id === subscription?.product)[0]?.name}
 					</div>
 					<p
-						className='cursor-pointer text-blue-500 hover:underline md:text-right'
-						onClick={manageSubscription}>Changer d&apos;abonnement</p>
+						className='membershipLink md:text-right'
+						onClick={manageSubscription}>
+							Changer d&apos;abonnement
+					</p>
 				</div>
 
 				<div className='accountRow'>
 					<h4 className='uppercase'>Paramètres</h4>
-					<p className='col-span-3 cursor-pointer text-blue-500 hover:underline' onClick={logout}>
+					<p className='membershipLink col-span-3' onClick={logout}>
 						Se déconnecter de tous les appareils
 					</p>
 				</div>
