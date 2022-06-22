@@ -9,7 +9,6 @@ import Moment from 'moment';
 import { MdSwitchAccount } from 'react-icons/md';
 import { getProducts, Product } from '@stripe/firestore-stripe-payments';
 import payments, { goToBillingPortal } from '../lib/stripe';
-import Plans from '../components/Plans';
 import Membership from '../components/Membership';
 import { useState } from 'react';
 
