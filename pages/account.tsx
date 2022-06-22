@@ -8,9 +8,10 @@ import useSubscription from '../hooks/useSubscription';
 import Moment from 'moment';
 import { MdSwitchAccount } from 'react-icons/md';
 import { getProducts, Product } from '@stripe/firestore-stripe-payments';
-import payments from '../lib/stripe';
+import payments, { goToBillingPortal } from '../lib/stripe';
 import Plans from '../components/Plans';
 import Membership from '../components/Membership';
+import { useState } from 'react';
 
 type Props = {
 	products: Product[]
@@ -40,6 +41,15 @@ function Account({products}: Props) {
 	const subscription = useSubscription(user);
 
 	const formatDateSubscription = Moment(subscription?.created).format('DD/MM/YYYY');
+
+	const [isBillingLoading, setBillingLoading] = useState(false);
+
+	const manageSubscription = () => {
+		if (subscription) {
+			setBillingLoading(true);
+			goToBillingPortal();
+		}
+	};
 
 	return (
 		<div>
@@ -79,16 +89,18 @@ function Account({products}: Props) {
 				<Membership />
 
 				<div className='accountRow'>
-					<h4>Votre forfait</h4>
+					<h4 className='uppercase'>Votre forfait</h4>
 					<div className='col-span-2 font-medium'>
 						{/* Pour chaque produit, on vérifie l'id de ce produit avec l'abonnement*/}
 						{products.filter((product) => product.id === subscription?.product)[0]?.name}
 					</div>
-					<p className='cursor-pointer text-blue-500 hover:underline md:text-right'>Changer d&apos;abonnement</p>
+					<p
+						className='cursor-pointer text-blue-500 hover:underline md:text-right'
+						onClick={manageSubscription}>Changer d&apos;abonnement</p>
 				</div>
 
 				<div className='accountRow'>
-					<h4>Paramètres</h4>
+					<h4 className='uppercase'>Paramètres</h4>
 					<p className='col-span-3 cursor-pointer text-blue-500 hover:underline' onClick={logout}>
 						Se déconnecter de tous les appareils
 					</p>
