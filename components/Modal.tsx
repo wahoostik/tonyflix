@@ -1,4 +1,4 @@
-import { PlusIcon, ThumbUpIcon, VolumeOffIcon, VolumeUpIcon, XIcon } from '@heroicons/react/outline';
+import { CheckIcon, PlusIcon, ThumbUpIcon, VolumeOffIcon, VolumeUpIcon, XIcon } from '@heroicons/react/outline';
 import MuiModal from '@mui/material/Modal';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -7,6 +7,9 @@ import { Element, Genre } from '../typing';
 import ReactPlayer from 'react-player/lazy';
 import { FaPlay } from 'react-icons/fa';
 import Error from './Error';
+import useAuth from '../hooks/useAuth';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 function Modal() {
 	
@@ -16,6 +19,9 @@ function Modal() {
 	const [genres, setGenres] = useState<Genre[]>([]);
 	const [muted, setMuted] = useState(false);
 	const [playing, setPlaying] = useState(false);
+	const [addedToList, setAddedToList] = useState(false);
+
+	const { user } = useAuth();
 	
 	useEffect(() => {
 		if(!movie) return;
@@ -49,6 +55,12 @@ function Modal() {
 		setShowModal(false);
 	};
 
+	const handleList = async () => {
+		if (addedToList) {
+			await deleteDoc(doc(db, 'customers', user!.uid, 'myList', movie?.id.toString()));
+		}
+	};
+
 	return (
 		<MuiModal
 			open={showModal}
@@ -76,8 +88,8 @@ function Modal() {
 								<FaPlay className='h-7 w-7 text-black' />
 							Lecture
 							</button>
-							<button className='modalButton'>
-								<PlusIcon className='h-7 w-7' />
+							<button className='modalButton' onClick={handleList}>
+								{addedToList ? (<CheckIcon className="h-7 w-7" />) : (<PlusIcon className="h-7 w-7" />)}
 							</button>
 							<button className='modalButton'>
 								<ThumbUpIcon className='h-7 w-7' />
