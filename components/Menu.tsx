@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button';
 import MuiMenu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Link from 'next/link';
 import { useState } from 'react';
 
 function Menu() {
@@ -33,14 +34,12 @@ function Menu() {
 				open={open}
 				onClose={handleClose}
 				className='menu'
-				MenuListProps={{
-					'aria-labelledby': 'basic-button',
-				}}
+				MenuListProps={{'aria-labelledby': 'basic-button'}}
 			>
-				<MenuItem onClick={handleClose}>Accueil</MenuItem>
-				<MenuItem onClick={handleClose}>Séries</MenuItem>
-				<MenuItem onClick={handleClose}>Films</MenuItem>
-				<MenuItem onClick={handleClose}>Ma Liste</MenuItem>
+				<Link href='/'><MenuItem onClick={handleClose}>Accueil</MenuItem></Link>
+				<Link href='/tvshows'><MenuItem onClick={handleClose}>Séries</MenuItem></Link>
+				<Link href='/movies'><MenuItem onClick={handleClose}>Films</MenuItem></Link>
+				<Link href='/'><MenuItem onClick={handleClose}>Ma Liste</MenuItem></Link>
 			</MuiMenu>
 		</div>
 	);

@@ -86,4 +86,23 @@ a {
   .membershipLink {
     @apply cursor-pointer text-blue-500 hover:underline;
   }
+
+  /* Composant Menu */
+  .menu {
+    @apply md:hidden;
+  }
+
+  .menu .MuiPaper-root {
+    @apply !absolute !rounded-none !border !border-[gray] !bg-black !text-white;
+    /* !left-0 */
+  }
+
+  .menu .MuiList-root {
+    @apply !p-0;
+  }
+/*
+  .menu .MuiMenuItem-root {
+    @apply !block !w-72 !py-3.5 !text-center !text-[#b3b3b3] !transition !duration-200 first:cursor-default first:!font-normal first:!text-white hover:!bg-[#11100F];
+  }
+*/
 }
