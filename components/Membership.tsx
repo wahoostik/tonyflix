@@ -26,7 +26,7 @@ function Membership() {
 					disabled={isBillingLoading || !subscription}
 					className='h-10 w-3/5 whitespace-nowrap bg-gray-300 py-2 text-sm font-medium text-black shadow-md hover:bg-gray-200 md:w-4/5'
 					onClick={manageSubscription}>
-					{isBillingLoading ? (<Loader color="blue-600" />) : ('ANNULER L\'ABONNEMENT')}
+					{isBillingLoading ? (<Loader color="red-600" />) : ('ANNULER L\'ABONNEMENT')}
 				</button>
 			</div>
 
