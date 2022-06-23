@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/Header';
+import Image from 'next/image';
+import ServerError from '../public/server.gif';
 
 function Custom500() {
 	return (
@@ -10,7 +12,15 @@ function Custom500() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Header />
-			<h1 className='text-center w-screen py-36'>500 - Server-side error occurred</h1>
+			<h1 className='text-center w-screen pt-48 font-bold md:text-4xl sm:text-2xl text-xl'>500 - Server-side error occurred</h1>
+			<div className='text-center w-screen'>
+				<Image
+					src={ServerError}
+					alt='500 Server Error'
+					width={800}
+					height={800}
+					className='object-contain'/>
+			</div>
 		</div>
 	);
 }
