@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/Header';
+import Image from 'next/image';
+import Travolta from '../public/travolta.gif';
 
 function Custom404() {
 	return (
@@ -10,7 +12,15 @@ function Custom404() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Header />
-			<h1 className='text-center w-screen py-36'>Oops, cette page n&apos;existe pas</h1>
+			<h1 className='text-center w-screen pt-48 font-bold md:text-4xl sm:text-2xl text-xl'>Oops, John Travolta a perdu votre page :(</h1>
+			<div className='text-center w-screen'>
+				<Image
+					src={Travolta}
+					alt='404 Travolta'
+					width={800}
+					height={800}
+					className='object-contain'/>
+			</div>
 		</div>
 	);
 }
