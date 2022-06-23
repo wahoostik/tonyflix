@@ -1,6 +1,6 @@
-import { SearchIcon } from '@heroicons/react/outline';
 import Head from 'next/head';
 import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
 
 function search() {
 	return (
@@ -11,16 +11,9 @@ function search() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Header />
-			<main className='relative pl-4 pt-24 lg:space-y-24 lg:pl-16'>
-				<h2>Search Page</h2>
-				<div className='text-center'>
-					<SearchIcon className='hidden h-6 w-6 sm:inline' />
-					<button
-						type='submit'
-						placeholder='Rechercher votre série ou film'>
-					</button>
-				</div>
-			</main>
+			<div className='pt-24 lg:space-y-24 px-16 grid justify-items-center'>
+				<SearchBar />
+			</div>
 		</div>
 	);
 }
