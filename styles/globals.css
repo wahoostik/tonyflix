@@ -36,7 +36,7 @@ a {
   
   /* Composant Header */
   .nav-link {
-    @apply cursor-pointer text-base font-medium text-[rgb(255,255,255)] transition duration-[.5s] hover:text-[rgb(219,219,219)];
+    @apply cursor-pointer text-base font-medium text-[rgb(255,255,255)] transition duration-[.5s] hover:text-[#e50914];
   }
 
   /* Composant Banner */
@@ -51,7 +51,7 @@ a {
 
   /* Page Login */
   .input {
-    @apply w-full rounded bg-[#333] px-5 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545];
+    @apply w-full rounded bg-[#333] px-5 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545] focus:ring-[#E50914] focus:border-[#E50914];
   }
 
   /* Composant Modal */
@@ -93,7 +93,7 @@ a {
   }
 
   .menu .MuiPaper-root {
-    @apply !absolute !rounded-none !border !border-[gray] !bg-black !text-white;
+    @apply !absolute !rounded-none !border !border-[#E50914] !bg-black !text-white;
     /* !left-0 */
   }
 

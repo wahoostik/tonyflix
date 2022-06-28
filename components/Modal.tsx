@@ -3,12 +3,12 @@ import MuiModal from '@mui/material/Modal';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modalState, movieState } from '../atoms/modalAtom';
-import { Element, Genre } from '../typing';
+import { Element, Genre, Movie } from '../typing';
 import ReactPlayer from 'react-player/lazy';
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay, FaPause } from 'react-icons/fa';
 import Error from './Error';
 import useAuth from '../hooks/useAuth';
-import { deleteDoc, doc, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, onSnapshot, setDoc, DocumentData, collection } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -21,6 +21,7 @@ function Modal() {
 	const [muted, setMuted] = useState(false);
 	const [playing, setPlaying] = useState(false);
 	const [addedToList, setAddedToList] = useState(false);
+	const [movies, setMovies] = useState<DocumentData[] | Movie[]>([]);
 
 	const { user } = useAuth();
 	
@@ -51,6 +52,19 @@ function Modal() {
 		
 		fetchVideo();
 	}, [movie]);
+
+	// Trouver tous les films dans la liste de l'utilisateur
+	useEffect(() => {
+		if (user) {
+			return onSnapshot(collection(db, 'customers', user.uid, 'myList'),(snapshot) => setMovies(snapshot.docs)
+			);
+		}
+	}, [db, movie?.id]);
+	
+	// Vérifiez si le film est déjà dans la liste de l'utilisateur
+	useEffect(() =>
+		setAddedToList(movies.findIndex((result) => result.data().id === movie?.id) !== -1),
+	[movies]);
 	
 	const handleClose = () => {
 		setShowModal(false);
@@ -106,9 +120,15 @@ function Modal() {
 						<div className='absolute bottom-10 flex w-full items-center justify-between px-10'>
 							<div className='flex space-x-2'>
 
-								<button className='flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]'>
-									<FaPlay className='h-7 w-7 text-black' />
-							Lecture
+								<button
+									className='rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]'
+									onClick={() => setPlaying(!playing)}>
+									{playing ?
+										(
+											<div className='flex items-center gap-x-2'><FaPause className='h-7 w-7 text-black' />Pause</div>
+										) : (
+											<div  className='flex items-center gap-x-2'><FaPlay className='h-7 w-7 text-black' />Lecture</div>
+										)}
 								</button>
 
 								<button className='modalButton' onClick={handleList}>
@@ -120,7 +140,7 @@ function Modal() {
 								</button>
 
 								<button className='modalButton' onClick={() => setMuted(!muted)}>
-									{muted ? ( <VolumeOffIcon className='h-6 w-6' /> ) : ( <VolumeUpIcon className='h-6 w-6' /> )}
+									{muted ? (<VolumeOffIcon className='h-6 w-6' /> ) : ( <VolumeUpIcon className='h-6 w-6' />)}
 								</button>
 								
 							</div>

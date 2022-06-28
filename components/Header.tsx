@@ -57,7 +57,9 @@ function Header() {
 				</ul>
 			</div>
 			<div className='flex items-center space-x-4 text-base font-medium'>
-				<SearchIcon className='hidden h-6 w-6 sm:inline' />
+				<Link href='/search'>
+					<SearchIcon className='hidden h-6 w-6 sm:inline cursor-pointer transition duration-[.5s] hover:text-[#e50914]' />
+				</Link>
 				<p className='hidden lg:inline'>Kids</p>
 				<BellIcon className='h-6 w-6' />
 				<div className='space-x-4'>
@@ -70,7 +72,7 @@ function Header() {
 					</Link>
 				</div>
 				<Link href='/login'>
-					<XCircleIcon className='h-8 w-8 cursor-pointer' onClick={logout}/>
+					<XCircleIcon className='h-8 w-8 cursor-pointer transition duration-[.5s] hover:text-[#e50914]' onClick={logout}/>
 				</Link>
 			</div>
 		</header>
