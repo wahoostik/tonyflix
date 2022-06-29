@@ -39,7 +39,7 @@ function Menu() {
 				<Link href='/'><MenuItem onClick={handleClose}>Accueil</MenuItem></Link>
 				<Link href='/tvshows'><MenuItem onClick={handleClose}>Séries</MenuItem></Link>
 				<Link href='/movies'><MenuItem onClick={handleClose}>Films</MenuItem></Link>
-				<Link href='/account'><MenuItem onClick={handleClose}>Ma Liste</MenuItem></Link>
+				<Link href='/account'><MenuItem onClick={handleClose}>Mon Compte</MenuItem></Link>
 			</MuiMenu>
 		</div>
 	);

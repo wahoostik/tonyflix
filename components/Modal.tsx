@@ -53,7 +53,7 @@ function Modal() {
 		fetchVideo();
 	}, [movie]);
 
-	// Trouver tous les films dans la liste de l'utilisateur
+	// Trouver tous les films/séries dans la liste de l'utilisateur
 	useEffect(() => {
 		if (user) {
 			return onSnapshot(collection(db, 'customers', user.uid, 'myList'),(snapshot) => setMovies(snapshot.docs)
@@ -61,7 +61,7 @@ function Modal() {
 		}
 	}, [db, movie?.id]);
 	
-	// Vérifiez si le film est déjà dans la liste de l'utilisateur
+	// Vérifiez si le film/série est déjà dans la liste de l'utilisateur
 	useEffect(() =>
 		setAddedToList(movies.findIndex((result) => result.data().id === movie?.id) !== -1),
 	[movies]);
@@ -75,12 +75,12 @@ function Modal() {
 			await deleteDoc(doc(db, 'customers', user!.uid, 'myList', movie?.id.toString()));
 
 			toast(`${movie?.title || movie?.original_name} a bien été surpprimé de Ma Liste`,
-				{duration: 8000, style: toastStyle});
+				{duration: 2000, style: toastStyle});
 		}else {
 			await setDoc(doc(db, 'customers', user!.uid, 'myList', movie?.id.toString()),{ ...movie });
 		
-			toast(`${movie?.title || movie?.original_name} a bien été ajouté de Ma Liste`,
-				{duration: 8000, style: toastStyle});
+			toast(`${movie?.title || movie?.original_name} a bien été ajouté à Ma Liste`,
+				{duration: 2000, style: toastStyle});
 		}
 	};
 
@@ -128,7 +128,8 @@ function Modal() {
 											<div className='flex items-center gap-x-2'><FaPause className='h-7 w-7 text-black' />Pause</div>
 										) : (
 											<div  className='flex items-center gap-x-2'><FaPlay className='h-7 w-7 text-black' />Lecture</div>
-										)}
+										)
+									}
 								</button>
 
 								<button className='modalButton' onClick={handleList}>

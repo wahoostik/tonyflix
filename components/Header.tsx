@@ -53,12 +53,14 @@ function Header() {
 					<Link href='/movies'>
 						<li className='nav-link'>Films</li>
 					</Link>
-					<li className='nav-link'>Ma Liste</li>
+					<Link href='/account'>
+						<li className='nav-link'>Mon Compte</li>
+					</Link>
 				</ul>
 			</div>
 			<div className='flex items-center space-x-4 text-base font-medium'>
 				<Link href='/search'>
-					<SearchIcon className='hidden h-6 w-6 sm:inline cursor-pointer transition duration-[.5s] hover:text-[#e50914]' />
+					<SearchIcon className='h-8 w-8 lg:inline cursor-pointer transition duration-[.5s] hover:text-[#e50914]' />
 				</Link>
 				<p className='hidden lg:inline'>Kids</p>
 				<BellIcon className='h-6 w-6' />

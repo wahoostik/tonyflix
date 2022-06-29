@@ -1,11 +1,13 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import { DocumentData } from 'firebase/firestore';
 import { useRef, useState } from 'react';
 import { Movie } from '../typing';
 import Thumbnail from './Thumbnail';
 
 type Props = {
     title: string
-    movies: Movie[]
+    // movies: Movie[]
+	movies: Movie[] | DocumentData // Firebase
 };
 
 function Row({title, movies}: Props) {
@@ -38,7 +40,7 @@ function Row({title, movies}: Props) {
 				<div
 					ref={rowRef}
 					className='flex items-center space-x-0.5 overflow-x-scroll scrollbar-hide md:space-x-2.5 md:p-2'>
-					{movies && movies.map((movie) => (
+					{movies && movies.map((movie: Movie | DocumentData) => (
 						<Thumbnail key={movie.id} movie={movie}/>
 					))}
 				</div>
