@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { CheckIcon } from '@heroicons/react/outline';
 import {  Product } from '@stripe/firestore-stripe-payments';
 import Head from 'next/head';
