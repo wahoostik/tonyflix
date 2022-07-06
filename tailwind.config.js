@@ -10,6 +10,21 @@ module.exports = {
 				'gradient-to-b':
 					'linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%);',
 			},
+			keyframes: {
+				'fade-in-down-with-opacity': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(-50px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					},
+				}
+			},
+			animation: {
+				'fade-in-down-with-opacity': 'fade-in-down-with-opacity 1s ease-out'
+			}
 		},
 		screens: {
 			'vsm': '250px', // => @media (min-width: 250px) { very small screen }

@@ -37,7 +37,7 @@ function ModalTVShows() {
 				console.log('Video Fetch : ', response);
 	
 				if (response?.videos) {
-					const index = response.videos.results.findIndex((element: Element) => element.type === 'Trailer');
+					const index = response.videos.results.findIndex((element: Element) => element.type === 'Trailer' || 'Teaser');
 					setTrailer(response.videos?.results[index]?.key);
 				}
 	

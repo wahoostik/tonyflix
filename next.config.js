@@ -5,7 +5,7 @@ const withTM = require('next-transpile-modules')(['@stripe/firestore-stripe-paym
 module.exports = withTM({
 	reactStrictMode: true,
 	images: {
-		domains: ['image.tmdb.org', 'api.themoviedb.org'],
+		domains: ['image.tmdb.org', 'api.themoviedb.org', 'www.movienewz.com'],
 	},
 });
 

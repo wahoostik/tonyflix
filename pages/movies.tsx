@@ -7,6 +7,9 @@ import requests from '../utils/requests';
 import { useRecoilValue } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 import ModalMovies from '../components/ModalMovies';
+import SearchMovie from '../components/SearchMovie';
+import { useState } from 'react';
+import { SearchIcon } from '@heroicons/react/outline';
 
 type Props = {
 	popularMovies: Movie[],
@@ -95,6 +98,7 @@ function Movies({
 }: Props) {
 
 	const showModal = useRecoilValue(modalState);
+	const [visibility, setVisibility] = useState(false);
 
 	return (
 		<div className='relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]'>
@@ -104,9 +108,17 @@ function Movies({
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Header />
+			{/*<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>*/}
 			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Banner bannerData={popularMovies} />
-				<section className='md:space-y-24'>
+				{/*<section className='md:space-y-24'>*/}
+				<section className='lg:space-y-12 md:space-y-10 sm:space-y-8 vsm:space-y-6'>
+					<div className='flex items-center cursor-pointer space-x-3 text-[#e5e5e5] transition duration-200 hover:text-white'>
+						<h2 className='text-sm font-semibold md:text-2xl'
+							onClick={() => setVisibility(!visibility)}>Rechercher un film</h2>
+						<SearchIcon className='lg:h-8 lg:w-8 md:h-7 md:w-7 vsm:h-4 vsm:w-4' onClick={() => setVisibility(!visibility)}/>
+					</div>
+					{visibility && <SearchMovie />}
 					<Row title='Populaires' movies={popularMovies}/>
 					<Row title='Les mieux notés' movies={topRatedMovies}/>
 					<Row title='Action' movies={actionMovies}/>

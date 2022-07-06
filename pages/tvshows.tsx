@@ -7,6 +7,9 @@ import requests from '../utils/requests';
 import { useRecoilValue } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 import ModalTVShows from '../components/ModalTVShows';
+import SearchTVShows from '../components/SearchTVShows';
+import { useState } from 'react';
+import { SearchIcon } from '@heroicons/react/outline';
 
 type Props = {
 	netflixOriginals: Movie[],
@@ -105,6 +108,7 @@ function TVShows({
 }: Props) {
 
 	const showModal = useRecoilValue(modalState);
+	const [visibility, setVisibility] = useState(false);
 
 	return (
 		<div className='relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]'>
@@ -116,7 +120,13 @@ function TVShows({
 			<Header />
 			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Banner bannerData={popularTVShows} />
-				<section className='md:space-y-24'>
+				<section className='lg:space-y-12 md:space-y-10 sm:space-y-8 vsm:space-y-6'>
+					<div className='flex items-center cursor-pointer space-x-3 text-[#e5e5e5] transition duration-200 hover:text-white'>
+						<h2 className='text-sm font-semibold md:text-2xl'
+							onClick={() => setVisibility(!visibility)}>Rechercher une série</h2>
+						<SearchIcon className='lg:h-8 lg:w-8 md:h-7 md:w-7 vsm:h-4 vsm:w-4' onClick={() => setVisibility(!visibility)}/>
+					</div>
+					{visibility && <SearchTVShows />}
 					<Row title='Netflix Originals Series' movies={netflixOriginals}/>
 					<Row title='Amazon Prime Series' movies={amazonPrimeSeries}/>
 					<Row title='Populaires' movies={popularTVShows}/>
