@@ -7,7 +7,7 @@ function Error() {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			console.log('Désolé, il y a un soucis avec Youtube :(');
-			setError('Désolé, il n\'y a pas de vidéo disponible :(');
+			setError('Désolé, il y a un soucis avec Youtube :(');
 		}, 2000);
 		return () => clearTimeout(timer);
 	}, []);

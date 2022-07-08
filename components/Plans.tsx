@@ -46,11 +46,13 @@ function Plans({ products }: Props) {
 						height={60}
 						className='cursor-pointer object-contain'/>
 				</Link>
-				<button
-					className='text-xl font-medium hover:underline'
-					onClick={logout}>
-                    Se déconnecter
-				</button>
+				<Link href='/login'>
+					<button
+						className='text-xl font-medium hover:underline'
+						onClick={logout}>
+                    Se connecter
+					</button>
+				</Link>
 			</header>
 
 			<main className='mx-auto max-w-5xl px-5 pt-36 pb-12 transition-all md:px-10'>

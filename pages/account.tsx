@@ -59,21 +59,19 @@ function Account({products}: Props) {
 			</Head>
 
 			<header>
-				<Link href='/'>
-					<Image
-						src={TLogo}
-						alt='Tonyflix Logo'
-						width={150}
-						height={50}
-						className='cursor-pointer object-contain'/>
-				</Link>
-				<Link href='/account'>
-					<Image src={AccountImage}
-						alt='Account Logo'
-						width={50}
-						height={50}
-						className='cursor-pointer rounded'/>
-				</Link>
+				<div className='flex items-center space-x-2 md:space-x-10'>
+					<Link href='/'>
+						<Image
+							src={TLogo}
+							alt='Tonyflix Logo'
+							width={150}
+							height={50}
+							className='cursor-pointer object-contain'/>
+					</Link>
+					<Link href='/'>
+						<p className='nav-link'>Accueil</p>
+					</Link>
+				</div>
 			</header>
 
 			<main className='pt-24 mx-auto max-w-6xl px-5 pb-12 transition-all md:px-10'>
