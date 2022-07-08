@@ -60,7 +60,7 @@ function Account({products}: Props) {
 
 			<header>
 				<div className='flex items-center space-x-2 md:space-x-10'>
-					<Link href='/'>
+					<Link href='/browse'>
 						<Image
 							src={TLogo}
 							alt='Tonyflix Logo'
@@ -68,7 +68,7 @@ function Account({products}: Props) {
 							height={50}
 							className='cursor-pointer object-contain'/>
 					</Link>
-					<Link href='/'>
+					<Link href='/browse'>
 						<p className='nav-link'>Accueil</p>
 					</Link>
 				</div>
