@@ -7,9 +7,6 @@
 
 ### Lien : https://tonyflix.vercel.app/
 
-### Pour vous connecter sans inscription :
-email : walter.white@breakingbad.com<br>
-password : heisenberg
 
 ### Codé avec
 
@@ -19,6 +16,14 @@ password : heisenberg
 * Recoil
 * Next
 * Firebase
+* Stripe
+
+### Pour vous connecter sans inscription :
+email : walter.white@breakingbad.com<br>
+password : heisenberg
+
+### Inscription avec de fausses données bancaires :
+https://stripe.com/docs/testing#cards
 
 ### Auteur
 

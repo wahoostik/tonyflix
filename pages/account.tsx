@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import TLogo from '../public/tonyflix.png';
 import Link from 'next/link';
-import AccountImage from '../public/account3.png';
 import useAuth from '../hooks/useAuth';
 import useSubscription from '../hooks/useSubscription';
 import Moment from 'moment';
