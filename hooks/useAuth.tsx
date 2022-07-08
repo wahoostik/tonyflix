@@ -60,7 +60,7 @@ export const AuthProvider = ({children}: AuthProps) => {
 			// Création d'un compte utilisateur
 			const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 			setUser(userCredential.user);
-			router.push('/browse'); // On envoie l'utilisateur sur la page d'accueil
+			router.push('https://tonyflix.vercel.app/browse'); // On envoie l'utilisateur sur la page d'accueil
 		} catch (error) {
 			console.trace(error);
 			alert('Erreur lors de l\'inscription');
@@ -76,7 +76,7 @@ export const AuthProvider = ({children}: AuthProps) => {
 			// Connexion d'un compte utilisateur
 			const userCredential = await signInWithEmailAndPassword(auth, email, password);
 			setUser(userCredential.user);
-			router.push('/browse'); // On envoie l'utilisateur sur la page d'accueil
+			router.push('https://tonyflix.vercel.app//browse'); // On envoie l'utilisateur sur la page d'accueil
 		} catch (error) {
 			console.trace(error);
 			alert('Erreur lors de la connexion');
