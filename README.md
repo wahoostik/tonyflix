@@ -5,8 +5,9 @@
   Netflix Clone
 </h1>
 
-### Lien : https://tonyflix.vercel.app/
+Clone du site Netflix en se basant sur l'API TMDB.
 
+### Lien : https://tonyflix.vercel.app/
 
 ### Codé avec
 
@@ -14,7 +15,7 @@
 * TypeScript
 * Tailwind
 * Recoil
-* Next
+* Next.js
 * Firebase
 * Stripe
 
